@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <en>
+         <string name="app_name">My Game</string>
+         <string name="score_text">Score: </string>
+         <string name="welcome_text">Welcome</string>
+         <string name="player_text">Player</string>
+         <string name="score_info">Player %0% has %1% points !</string>
+    </en>
+    <fr>
+        <string name="app_name">Mon Jeu</string>
+        <string name="score_text">Score: </string>
+        <string name="welcome_text">Bienvenue</string>
+        <string name="player_text">Joueur</string>
+        <string name="score_info">Le joueur %0% a %1% points !</string>
+    </fr> 
+    <de>
+        <string name="app_name">Mein Spiel</string>
+        <string name="score_text">Ergebnis: </string>
+        <string name="welcome_text">Willkommen</string>
+        <string name="player_text">Spieler</string>
+        <string name="score_info">Der Spieler %0% %1% Punkte erzielt!</string>
+    </de>
+</resources>
