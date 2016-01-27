@@ -10,7 +10,8 @@ namespace ULocalization
 {
 	public class Localization : ScriptableObject
 	{
-		#region [PUBLIC MEMBERS]
+		#region [Public properties]
+
 		public string Language
 		{
 			get
@@ -22,25 +23,26 @@ namespace ULocalization
 				m_Language = value;
 			}
 		}
+
 		#endregion
 	
-		#region [PRIVATE MEMBERS]
+		#region [Private members]
+
 		[SerializeField]
 		private Dictionary<string, string> m_Strings = new Dictionary<string, string>();
 		
 		[SerializeField]
 		private string m_Language = null;
+
 		#endregion
 		
-		#region [PUBLIC METHODS]	
-		public void SetLanguageFile(string aFilePath, string aLanguage)
-		{
-			var lXml = new XmlDocument();
-			lXml.Load(aFilePath);
-			
-			InitLanguageFromXML(lXml, aLanguage);
-		}
-		
+		#region [Public methods]	
+
+		/// <summary>
+		/// Sets the localization file string and the language to load.
+		/// </summary>
+		/// <param name="aXMLString">A XML string.</param>
+		/// <param name="aLanguage">A language.</param>
 		public void SetLanguageString(string aXMLString, string aLanguage)
 		{
 			var lXml = new XmlDocument();
@@ -48,7 +50,12 @@ namespace ULocalization
 			
 			InitLanguageFromXML(lXml, aLanguage);
 		}
-		
+
+		/// <summary>
+		/// Gets the localized string.
+		/// </summary>
+		/// <returns>The string.</returns>
+		/// <param name="aKey">A key.</param>
 		public string GetString(string aKey)
 		{
 			if (!m_Strings.ContainsKey(aKey))
@@ -62,7 +69,7 @@ namespace ULocalization
 		}
 		
 		/// <summary>
-		/// Gets the string and insert values. 
+		/// Gets the localized string and insert values. 
 		/// </summary>
 		/// <returns>The string.</returns>
 		/// <param name="aKey">A key.</param>
@@ -95,9 +102,11 @@ namespace ULocalization
 				return GetString(aKey, aValuesToInsertArray);
             }
         }
+
 		#endregion
 		
-		#region [PRIVATE METHODS]
+		#region [Private methods]
+
 		void InitLanguageFromXML(XmlDocument aXMLDocument, string aLanguage)
 		{
 			var lDocument = aXMLDocument.DocumentElement[aLanguage];
@@ -119,6 +128,5 @@ namespace ULocalization
 			}
         }
         #endregion
-        
     }
 }

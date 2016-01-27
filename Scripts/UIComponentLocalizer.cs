@@ -5,42 +5,58 @@ using System.Collections;
 namespace ULocalization
 {
 	[RequireComponent(typeof(Text))]
-	public class UIComponentLocalizer : MonoBehaviour {
-		
-		#region [PUBLIC MEMBER]
-		public LocalizationManager m_LocalizationManager;
-		public string m_Key;
+	/// <summary>
+	/// UnityEngine.UI Text localizer. Updade text value with localized string automatically.
+	/// </summary>
+	public class UIComponentLocalizer : MonoBehaviour 
+	{
+		#region [Public members]
+
+		public LocalizationManager Localizer {get{return m_localizationManager;}set{m_localizationManager = value;}}
+		public string Key {get{return m_key;}set{m_key = value;}}
+
 		#endregion
 		
-		#region [PRIVATE MEMBER]
-		Text text;
+		#region [Private members]
+
+		[SerializeField]
+		LocalizationManager m_localizationManager;
+
+		[SerializeField]
+		string m_key;
+
+		Text m_text;
+
 		#endregion
 		
-		#region [UNITY]
+		#region [MonoBehaviour]
+
 		// Use this for initialization
 		void OnEnable() 
 		{
-			text = GetComponent<Text>();
-			if(m_LocalizationManager != null)
-				m_LocalizationManager.OnLanguageChanged += UpdateText;
+			m_text = GetComponent<Text>();
+			if(m_localizationManager != null)
+				m_localizationManager.OnLanguageChanged += UpdateText;
 				
 			UpdateText();
 		}
 		
 		void OnDisable()
 		{
-			if(m_LocalizationManager != null)
-				m_LocalizationManager.OnLanguageChanged -= UpdateText;
+			if(m_localizationManager != null)
+				m_localizationManager.OnLanguageChanged -= UpdateText;
 		}
+
 		#endregion
 		
-		#region [PUBLIC METHOD]
+		#region [Public methods]
+
 		public void UpdateText()
 		{
-			if(m_LocalizationManager != null)
-						text.text = m_LocalizationManager.GetString(m_Key);
-//			text.text = localization[key];
+			if(m_localizationManager != null)
+						m_text.text = m_localizationManager.GetString(m_key);
 		}
+
 		#endregion
 	}	
 }
