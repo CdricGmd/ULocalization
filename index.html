@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Ulocalization by CdricGmd</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Ulocalization</h1>
+        <h2>Text localization for Unity</h2>
+        <a href="https://github.com/CdricGmd/ULocalization" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="ulocalization" class="anchor" href="#ulocalization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ULocalization</h1>
+
+<h1></h1>
+
+<h2>
+<a id="what-is-it-" class="anchor" href="#what-is-it-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is it ?</h2>
+
+<p>ULocalization is a simple library to help using localized texts in Unity3D applications. ULocalization is integrated in Unity's Editor to localize UI Text components.</p>
+
+<p>Localized text are stored in XML files with a simple syntax, inspired from Android resources files.</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;en&gt;
+         &lt;string name="app_name"&gt;My Game&lt;/string&gt;
+         &lt;string name="score_text"&gt;Score: &lt;/string&gt;
+         &lt;string name="welcome_text"&gt;Welcome&lt;/string&gt;
+         &lt;string name="player_text"&gt;Player&lt;/string&gt;
+         &lt;string name="score_info"&gt;Player %0% has %1% points !&lt;/string&gt;
+    &lt;/en&gt;
+    &lt;fr&gt;
+        &lt;string name="app_name"&gt;Mon Jeu&lt;/string&gt;
+        &lt;string name="score_text"&gt;Score: &lt;/string&gt;
+        &lt;string name="welcome_text"&gt;Bienvenue&lt;/string&gt;
+        &lt;string name="player_text"&gt;Joueur&lt;/string&gt;
+        &lt;string name="score_info"&gt;Le joueur %0% a %1% points !&lt;/string&gt;
+    &lt;/fr&gt;
+    &lt;de&gt;
+        &lt;string name="app_name"&gt;Mein Spiel&lt;/string&gt;
+        &lt;string name="score_text"&gt;Ergebnis: &lt;/string&gt;
+        &lt;string name="welcome_text"&gt;Willkommen&lt;/string&gt;
+        &lt;string name="player_text"&gt;Spieler&lt;/string&gt;
+        &lt;string name="score_info"&gt;Der Spieler %0% %1% Punkte erzielt!&lt;/string&gt;
+    &lt;/de&gt;
+&lt;/resources&gt;
+</code></pre>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>The Demo folder contains usage examples.</p>
+
+<h3>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h3>
+
+<p><strong>Localization</strong>: a ScriptableObject loading a resource file. </p>
+
+<pre><code>Localization m_Localization;
+
+// Init.
+m_Localization = ScriptableObject.CreateInstance&lt;Localization&gt;();
+string content = System.IO.File.ReadAllText("Assets/SomePath/strings.xml");
+m_Localization.SetLanguageString(content, "en");
+
+// Get localized values
+Debug.Log(m_Localization["app_name"]); // "My Game"
+Debug.Log(m_Localization["score_info", "Toto", "12"]); // "Player Toto has 12 points !" (inserted values)
+</code></pre>
+
+<p>The following components provide a convenient Unity Editor integration.</p>
+
+<p><strong>LocalizationManager</strong> component loads localized text file from <em>Resources</em> folder, handles system language choice and raise event on language changed.</p>
+
+<p><strong>UIComponentLocalizer</strong>: component to localize UI Text Components <code>UnityEngine.UI.Text</code>. Attach a UIComponentLocalizer on a UI Text, fill the key field and link to the LocalizationManager.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Copy / Download / Add as Submodule (...) the <em>ULocalization</em> folder somewhere in the <em>Assets</em> folder of your Unity project.</p>
+
+<p><code>Demo</code> folder is for instructional purpose only and can be removed from your project.</p>
+
+<h2>
+<a id="licensing" class="anchor" href="#licensing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Licensing</h2>
+
+<p>MIT. See LICENSE file.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/CdricGmd/ULocalization/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/CdricGmd/ULocalization/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/CdricGmd/ULocalization"></a> is maintained by <a href="https://github.com/CdricGmd">CdricGmd</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
